@@ -95,7 +95,7 @@ if /i ".ssi"=="%~x1" set ssi=1&goto :out
 set interp=gauss
 set insp=,rotate=PI/2
 set ix_fov=204
-if /i ".insp"=="%~x1" goto :/
+if /i ".insp"=="%~x1" goto :insp
 if /i not ".jpeg"=="%~x1" goto :EOF
 
 :jpeg
