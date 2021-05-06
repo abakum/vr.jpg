@@ -24,12 +24,13 @@ Run `LR2VR.bat` without parameters to place it in "%UserProfile%\SendTo"
 * "c:\VR\g.vr.jpg" - 3D photo from g.pns
 * "c:\VR\h.vr.jpg" - 3D photo from h.ssi
 # Thanks:
-* [cardboard-camera-vr-photo-format](https://developers.google.com/vr/reference/cardboard-camera-vr-photo-format)
-* [chocolatey](https://chocolatey.org)
-* [exiftool](https://exiftool.org) `choco install exiftool`
-* [ffmpeg](https://ffmpeg.org) `choco install ffmpeg`
-* [msys2](https://www.msys2.org) `choco install msys2`
+* [Cardboard Camera VR Photo Format](https://developers.google.com/vr/reference/cardboard-camera-vr-photo-format)
+* [Google Photos](https://photos.google.com)
+* [Chocolatey](https://chocolatey.org)
+* [ExifTool by Phil Harvey](https://exiftool.org) `choco install exiftool`
+* [FFmpeg](https://ffmpeg.org) `choco install ffmpeg`
+* [MSYS2](https://www.msys2.org) `choco install msys2`
 * [exiv2](https://www.exiv2.org) `pacman -S $MINGW_PACKAGE_PREFIX-exiv2`
-* [Fujifilm_FinePix_W_Series_Real_3D](https://wikipedia.org/wiki/Fujifilm_FinePix_W_Series_Real_3D)
+* [FUJIFILM FinePix REAL 3D W3](https://wikipedia.org/wiki/Fujifilm_FinePix_W_Series_Real_3D)
 * [StereoPhotoView](https://stereophotoview.bitbucket.io)
 * [sView](http://www.sview.ru)
