@@ -34,3 +34,4 @@ Run `LR2VR.bat` without parameters to place it in "%UserProfile%\SendTo"
 * [FUJIFILM FinePix REAL 3D W3](https://wikipedia.org/wiki/Fujifilm_FinePix_Real_3D)
 * [StereoPhotoView](https://stereophotoview.bitbucket.io)
 * [sView](http://www.sview.ru)
+* [VRex](http://paulbourke.net/stereographics/stereoimage)
