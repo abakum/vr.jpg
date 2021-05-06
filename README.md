@@ -32,3 +32,4 @@ Run `LR2VR.bat` without parameters to place it in "%UserProfile%\SendTo"
 * [exiv2](https://www.exiv2.org) `pacman -S $MINGW_PACKAGE_PREFIX-exiv2`
 * [Fujifilm_FinePix_W_Series_Real_3D](https://wikipedia.org/wiki/Fujifilm_FinePix_W_Series_Real_3D)
 * [StereoPhotoView](https://stereophotoview.bitbucket.io)
+* [sView](http://www.sview.ru)
