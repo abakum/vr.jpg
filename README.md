@@ -28,9 +28,9 @@ Run `LR2VR.bat` without parameters to place it in "%UserProfile%\SendTo"
 * [Google Photos](https://photos.google.com)
 * [Chocolatey](https://chocolatey.org)
 * [ExifTool by Phil Harvey](https://exiftool.org) `choco install exiftool`
-* [FFmpeg by Fabrice Bellard and others](https://ffmpeg.org) `choco install ffmpeg`
-* [MSYS2](https://www.msys2.org) `choco install msys2`
-* [Exiv2 by Andreas Huggel and others](https://github.com/Exiv2/exiv2) `pacman -S $MINGW_PACKAGE_PREFIX-exiv2`
+* [FFmpeg by Fabrice Bellard, ...](https://ffmpeg.org) `choco install ffmpeg`
+* [MSYS2 by Alexey Pavlov, ...](https://www.msys2.org) `choco install msys2`
+* [Exiv2 by Andreas Huggel, ...](https://github.com/Exiv2/exiv2) `pacman -S $MINGW_PACKAGE_PREFIX-exiv2`
 * [FUJIFILM FinePix REAL 3D W3](https://wikipedia.org/wiki/Fujifilm_FinePix_Real_3D)
 * [StereoPhotoView by Alexander Mamzikov](https://stereophotoview.bitbucket.io)
 * [sView by Kirill Gavrilov](http://www.sview.ru)
