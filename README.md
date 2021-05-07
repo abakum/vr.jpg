@@ -32,6 +32,6 @@ Run `LR2VR.bat` without parameters to place it in "%UserProfile%\SendTo"
 * [MSYS2](https://www.msys2.org) `choco install msys2`
 * [Exiv2](https://github.com/Exiv2/exiv2) `pacman -S $MINGW_PACKAGE_PREFIX-exiv2`
 * [FUJIFILM FinePix REAL 3D W3](https://wikipedia.org/wiki/Fujifilm_FinePix_Real_3D)
-* [StereoPhotoView](https://stereophotoview.bitbucket.io)
-* [sView](http://www.sview.ru)
+* [StereoPhotoView by Alexander Mamzikov](https://stereophotoview.bitbucket.io)
+* [sView by Kirill Gavrilov](http://www.sview.ru)
 * [VRex](http://paulbourke.net/stereographics/stereoimage)
