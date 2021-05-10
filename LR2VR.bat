@@ -5,17 +5,8 @@
  call :doit "%~2"
  goto :EOF
 )
+
 :main
-@if "%~1"=="" (
- @if not exist "%UserProfile%\SendTo\%~n0.lnk" (
-  if defined ChocolateyInstall (
-   "%ChocolateyInstall%\tools\shimgen.exe" -o "%UserProfile%\SendTo\%~n0.exe" -p "%~f0"
-  ) else (
-   copy /b "%~f0" "%UserProfile%\SendTo\%~nx0"
-  )
-  @echo "%~f0" is placed in "%UserProfile%\SendTo"
- )
-)
 @echo Convert 3D photos from .mpo .jps .pns .ssi files
 @echo or 2D panoramas from left and right vr360 cameras from .jpeg .insp files
 @echo to .vr.jpg files for cardboard and photos.google.com
@@ -43,10 +34,21 @@
 @rem choco install ffmpeg
 @rem choco install msys2
 @rem pacman -S $MINGW_PACKAGE_PREFIX-exiv2
+@if "%~1"=="" (
+ @if not exist "%UserProfile%\SendTo\%~n0.lnk" (
+  if defined ChocolateyInstall (
+   "%ChocolateyInstall%\tools\shimgen.exe" -o "%UserProfile%\SendTo\%~n0.exe" -p "%~f0"
+  ) else (
+   copy /b "%~f0" "%UserProfile%\SendTo\%~nx0"
+  )
+  @echo "%~f0" is placed in "%UserProfile%\SendTo"
+ )
+)
 set cmd="cmd /c "%~f0" nul "@path""
 
 :loop
  @if "%~1"=="" (
+  type "%~dp1%vr%\index.txt"
   pause
   goto :EOF
  )
@@ -74,6 +76,7 @@ set cmd="cmd /c "%~f0" nul "@path""
 :doit
 set inp="%~f1"
 if not exist %inp% goto :EOF
+title %inp%
 set vr=..\VR
 set tags="%temp%\%~nx1"
 set L="%temp%\%~n1L.jpg"
@@ -143,13 +146,14 @@ if defined jps call :jp
 if defined vf goto :ffmpeg
 
 :mpo
-exiftool -MPImage2 -b %inp%>"%R%"
+exiftool -MPImage2 -b %inp% -W "%R%"||del "%R%"
+if not exist "%R%" exiftool -MPImage3 -b %inp% -W "%R%"||del "%R%"
 if not exist "%R%" goto :EOF
 call :set                                                     ImageWidthR ImageHeightR
-for /f "tokens=1,2 usebackq delims=: " %%i in (`exiftool -s2 -ImageWidth -ImageHeight %R%`) do set %%iR=%%j
+for /f "tokens=1,2 usebackq delims=: " %%i in (`exiftool -s2 -ImageWidth -ImageHeight "%R%"`) do set %%iR=%%j
 if not "%ImageWidthR%"=="%ImageWidth%" goto :end
 if not "%ImageHeightR%"=="%ImageHeight%" goto :end
-exiftool -makernotes -b %R%>"%M%"||del "%M%"
+exiftool -makernotes -b "%R%">"%M%"||del "%M%"
 set makernotes=-makernotes:all=
 if exist "%M%" set makernotes="-makernotes<=%M%"
 exiftool -overwrite_original -all= "%R%"
@@ -174,7 +178,7 @@ ffmpeg -hide_banner -i %inp% -vf showinfo -f null - 2>&1|find /i "stereoscopic">
 if not exist "%M%" goto :crop
 
 :VRex
-for /f "tokens=3 delims=-" %%i in (%M%) do set VRex=%%i
+for /f "tokens=3 delims=-" %%i in ("%M%") do set VRex=%%i
 if "%VRex:inverted=%"=="%VRex%" call :diverg
 if "%VRex:side=%"=="%VRex%" call :ba
 
@@ -309,4 +313,6 @@ del %tags% %L% "%R%" %O% "%M%"
 exiv2 -M"set Xmp.GPano.InitialHorizontalFOVDegrees %InitialHorizontalFOVDegrees%" %O%
 if not exist "%~dp1%vr%" md "%~dp1%vr%"
 exiftool "-FileCreateDate<CreateDate" "-FileModifyDate<ModifyDate" %O% -o %out%
+if not exist %out% goto :EOF
+echo %out%>>"%~dp1%vr%\index.txt"
 :exiftool -X %out% -w! .xml
