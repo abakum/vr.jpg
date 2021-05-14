@@ -45,10 +45,11 @@
  )
 )
 set cmd="cmd /c "%~f0" nul "@path""
+set tags=
 
 :loop
  @if "%~1"=="" (
-  type "%~dp1%vr%\index.txt"
+  type %new%
   pause
   goto :EOF
  )
@@ -67,6 +68,16 @@ set cmd="cmd /c "%~f0" nul "@path""
  @shift
 @goto :loop
 
+:vr
+set vr=%~1
+call :suff
+set new="%vr%\new.txt"
+goto :EOF
+
+:suff
+set out="%vr%\%n1%%suff%.vr.jpg"
+goto :EOF
+
 :set
  @if "%1"=="" goto :EOF
  @set %1=
@@ -77,7 +88,9 @@ set cmd="cmd /c "%~f0" nul "@path""
 set inp="%~f1"
 if not exist %inp% goto :EOF
 title %inp%
-set vr=..\VR
+set n1=%~n1
+call :vr "%~dp1..\VR"
+if not defined tags del %new%
 set tags="%temp%\%~nx1"
 set L="%temp%\%~n1L.jpg"
 set R=%temp%\%~n1R.jpg
@@ -119,7 +132,7 @@ set pair="%~dp1..\%~nx1"
 if not exist %pair% goto :EOF
 set suff=B
 set pano=iw/2
-set vr=..\..\VR
+call :vr "%~dp1..\..\VR"
 goto :vf
 
 :evo
@@ -131,7 +144,7 @@ set vfp=crop=iw/2:ih:iw/2%vfs%
 set vf=crop=iw/2:ih:%pano%%vfs%
 
 :out
-set out="%~dp1%vr%\%~n1%suff%.vr.jpg"
+call :suff
 if exist %out% goto :EOF
 call :set                                                     ImageWidth  ImageHeight  ProjectionType  InitialHorizontalFOVDegrees  PoseHeadingDegrees  MakerNoteUnknown  FOV  StereoMode  ImageArrangement  FirstPhotoDate  LastPhotoDate
 for /f "tokens=1,2 usebackq delims=: " %%i in (`exiftool -s2 -ImageWidth -ImageHeight -ProjectionType -InitialHorizontalFOVDegrees -PoseHeadingDegrees -MakerNoteUnknown -FOV -StereoMode -ImageArrangement -FirstPhotoDate -LastPhotoDate %inp%`) do set %%i=%%j
@@ -153,7 +166,7 @@ call :set                                                     ImageWidthR ImageH
 for /f "tokens=1,2 usebackq delims=: " %%i in (`exiftool -s2 -ImageWidth -ImageHeight "%R%"`) do set %%iR=%%j
 if not "%ImageWidthR%"=="%ImageWidth%" goto :end
 if not "%ImageHeightR%"=="%ImageHeight%" goto :end
-exiftool -makernotes -b "%R%">"%M%"||del "%M%"
+exiftool -makernotes -b "%R%" -W "%M%"||del "%M%"
 set makernotes=-makernotes:all=
 if exist "%M%" set makernotes="-makernotes<=%M%"
 exiftool -overwrite_original -all= "%R%"
@@ -295,7 +308,8 @@ call :date
 :vr360
 if not defined ProjectionType goto :end
 if "%suff%"=="B" goto :end
-set out="%~dp1%vr%\%~n1.vr.jpg"
+set suff=
+call :suff
 if exist %out% goto :end
 del "%R%" %O% 
 exiftool -all= %pair% -o "%R%"
@@ -311,8 +325,8 @@ del %tags% %L% "%R%" %O% "%M%"
 :date
 @rem Any of -api Compact= or use -z or do not use -z breaks compatibility with https://arvr.google.com/vr180/apps/
 exiv2 -M"set Xmp.GPano.InitialHorizontalFOVDegrees %InitialHorizontalFOVDegrees%" %O%
-if not exist "%~dp1%vr%" md "%~dp1%vr%"
+if not exist "%vr%" md "%vr%"
 exiftool "-FileCreateDate<CreateDate" "-FileModifyDate<ModifyDate" %O% -o %out%
 if not exist %out% goto :EOF
-echo %out%>>"%~dp1%vr%\index.txt"
+echo %out%>>%new%
 :exiftool -X %out% -w! .xml
