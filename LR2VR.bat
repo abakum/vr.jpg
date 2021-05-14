@@ -327,6 +327,6 @@ del %tags% %L% "%R%" %O% "%M%"
 exiv2 -M"set Xmp.GPano.InitialHorizontalFOVDegrees %InitialHorizontalFOVDegrees%" %O%
 if not exist "%vr%" md "%vr%"
 exiftool "-FileCreateDate<CreateDate" "-FileModifyDate<ModifyDate" %O% -o %out%
-if not exist %out% goto :EOF
+if not exist %out% goto :end
 echo %out%>>%new%
 :exiftool -X %out% -w! .xml
