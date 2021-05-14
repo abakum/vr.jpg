@@ -24,14 +24,16 @@ Run `LR2VR.bat` without parameters to place it in "%UserProfile%\SendTo"
 * "c:\VR\g.vr.jpg" - 3D photo from g.pns
 * "c:\VR\h.vr.jpg" - 3D photo from h.ssi
 # Thanks:
-* [Cardboard Camera VR Photo Format](https://developers.google.com/vr/reference/cardboard-camera-vr-photo-format)
-* [Google Photos](https://photos.google.com)
+* [Cardboard Camera VR Photo Format by Google](https://developers.google.com/vr/reference/cardboard-camera-vr-photo-format)
+* [Photos by Google](https://photos.google.com)
 * [Chocolatey](https://chocolatey.org)
 * [ExifTool by Phil Harvey](https://exiftool.org) `choco install exiftool`
 * [FFmpeg by Fabrice Bellard, ...](https://ffmpeg.org) `choco install ffmpeg`
 * [MSYS2 by Alexey Pavlov, ...](https://www.msys2.org) `choco install msys2`
 * [Exiv2 by Andreas Huggel, ...](https://github.com/Exiv2/exiv2) `pacman -S $MINGW_PACKAGE_PREFIX-exiv2`
-* [FUJIFILM FinePix REAL 3D W3](https://wikipedia.org/wiki/Fujifilm_FinePix_Real_3D)
 * [StereoPhotoView by Alexander Mamzikov](https://stereophotoview.bitbucket.io)
 * [sView by Kirill Gavrilov](http://www.sview.ru)
-* [VRex](http://paulbourke.net/stereographics/stereoimage)
+* [Stereo Still Image Format for Digital Cameras by CIPA](https://www.cipa.jp/std/documents/download_e.html?DC-006_E)
+* [Multi-Picture Format by CIPA](http://www.cipa.jp/std/documents/download_e.html?DC-007_E)
+* [FinePix REAL 3D W3 by FUJIFILM](https://wikipedia.org/wiki/Fujifilm_FinePix_Real_3D)
+* [VRex and Paul Bourke](http://paulbourke.net/stereographics/stereoimage)
