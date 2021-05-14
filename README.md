@@ -2,17 +2,17 @@
 Convert 3D photos from .mpo .jps .pns .ssi files or 2D panoramas from left and right vr360 cameras or 3D insta360 evo from .jpeg .insp files to .vr.jpg files for cardboard and photos.google.com
 # Usage:
 Run `LR2VR.bat` without parameters to place it in "%UserProfile%\SendTo"
-## Place dual fisheye files:
+## place dual fisheye files:
 * from right vr360 cam to "c:\f\R\df.jpeg" "c:\f\R\df.insp"
 * from left vr360 cam to "c:\f\df.jpeg" "c:\f\df.insp"
 * from left and rigth vr180 evo cam to "c:\f\df.insp"
-## Place stitched equirectangular panorama files:
+## place stitched equirectangular panorama files:
 * from right vr360 cam to "c:\f\R\vr360.jpeg"<br>
 * from left vr360 cam to "c:\f\vr360.jpeg"<br>
-## Send files or dirs:
+## send files or dirs:
 * "c:\d\e.mpo" "c:\d\f.jps" "c:\d\g.pns" "c:\d\h.ssi" "c:\e" "c:\f\df.jpeg" "c:\f\R\df.insp" "c:\f\vr360.jpeg" "c:\f" "c:\f\R" ... to `LR2VR`
 * or drop it to `LR2VR.bat`
-## Then look at:
+## then look at:
 * "c:\VR\dfF.vr.jpg" - front view vr180 3D panorama
 * "c:\VR\dfB.vr.jpg" - back view vr180 3D panorama
 * "c:\VR\df.vr.jpg" - vr180 3D panorama from vr180 evo cam
